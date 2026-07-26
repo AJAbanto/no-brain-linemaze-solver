@@ -56,6 +56,21 @@ void find_shortestpath(std::vector<char> &turns_taken){
 
             //Increment the iterator to skip to the next turn after the detected loop
             curr_turn += 2;
+        }else if(turn_angle == 270){
+            //Else a sequence results in a 270 degree turn angle, push back a "L" to skip the sequence
+            std::cout << "Short cut can be made\n";
+            shortest_path.push_back('R');
+
+            //Increment the iterator to skip to the next turn after the detected loop
+            curr_turn += 2;
+        }else if(turn_angle == 90){
+            //Else a sequence results in a 90 degree turn angle, push back a "L" to skip the sequence
+            //This usually happens if you're using a right hand rule during the first search
+            std::cout << "Short cut can be made\n";
+            shortest_path.push_back('L');
+
+            //Increment the iterator to skip to the next turn after the detected loop
+            curr_turn += 2;
         }else{
             shortest_path.push_back(turns_taken[curr_turn]);
         }
@@ -90,12 +105,17 @@ int main(){
     // S means Straight
     std::vector<char> map1= {'L', 'U', 'L', 'E'};
     std::vector<char> map2= {'L', 'U', 'L', 'R', 'L', 'U', 'L', 'E'};
-
+    std::vector<char> map3= {'S', 'U', 'L', 'L', 'U', 'L','E'};
+    std::vector<char> map4= {'S', 'U', 'R', 'R', 'U', 'R','E'}; //This map assumes Right hand rule
 
     //Print shortest path
     std::cout << "------- Test Map 1 -------\n";
     find_shortestpath(map1);
     std::cout << "------- Test Map 2 -------\n";
     find_shortestpath(map2);
+    std::cout << "------- Test Map 3 -------\n";
+    find_shortestpath(map3);
+    std::cout << "------- Test Map 4 -------\n";
+    find_shortestpath(map4);
     return 0;
 }
