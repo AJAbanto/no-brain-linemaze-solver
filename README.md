@@ -16,7 +16,7 @@ This algorithm relies on the recognition of turn sequences that can be simplifie
 ### Assumptions
 - The robot traverses the line maze using either a left-hand or right-hand rule
 - There are no loops in the maze
-- Actions taken when first traversing the line maze is stored in `vector<char>` arrays where each turn/action performed at an intersection is represented as a `char` . See below:
+- Actions taken when first traversing the line maze is stored in a `vector<char>` where each turn/action performed at an intersection is represented as a `char` . See below:
 
 | Letter | Action |
 | ---- | ---- | 
