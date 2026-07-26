@@ -1,5 +1,5 @@
 # no-brain-linemaze-solver
-Simple line maze solver, intended to show beginners can solve line mazes without loops
+Simple line maze solver, intended to show how beginners can solve line mazes without loops
 
 ## Building
 ```
