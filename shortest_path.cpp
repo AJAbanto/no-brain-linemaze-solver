@@ -47,8 +47,8 @@ void find_shortestpath(std::vector<char> &turns_taken){
             std::cout << "Current turn angle: " << turn_angle << "\n";
         }
 
-        //Check if turn angle has reached 360
-        if(turn_angle == 360 || turn_angle == -360){
+        //Check if turn angle corresponds to a known sequence
+        if(turn_angle == 360 || turn_angle == 0){
             //If it has, push back a "Straight" to skip the intersection 
             //that results in a 360 turn
             std::cout << "Short cut can be made\n";
