@@ -16,6 +16,7 @@ This algorithm relies on the recognition of turn sequences that can be simplifie
 ### Assumptions
 - The robot traverses the line maze using either a left-hand or right-hand rule
 - There are no loops in the maze
+- Only turns taken at an intersection can be simplified
 
 ### Maze representation
 For this demo, we assume that the maze is percieved using the actions that a line-tracing robot makes when traversing it. 
@@ -53,3 +54,15 @@ will be simplified to
 ```
 S , R, E
 ```
+
+#### How are patterns recognized?
+To recognize patterns we simply tracked the resulting "turn angle" or the sum of degrees turned. Assuming the robot's "heading" or angle is initially `0 degrees`. We the increment or decrement based on the table below
+
+| Turn | Angle |
+| ---- | ---- |
+| L | 90 |
+| R | -90 |
+| U | 180 |
+| S | 0 |
+
+From here we can add conditionals to match the angle of the pattern. For example `L U L` will result to and angle of `360 degrees`

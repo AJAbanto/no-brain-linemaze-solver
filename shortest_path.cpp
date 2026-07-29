@@ -47,32 +47,34 @@ void find_shortestpath(std::vector<char> &turns_taken){
             std::cout << "Current turn angle: " << turn_angle << "\n";
         }
 
-        //Check if turn angle corresponds to a known sequence
-        if(turn_angle == 360 || turn_angle == 0){
-            //If it has, push back a "Straight" to skip the intersection 
-            //that results in a 360 turn
-            std::cout << "Short cut can be made\n";
-            shortest_path.push_back('S');
 
-            //Increment the iterator to skip to the next turn after the detected loop
-            curr_turn += 2;
-        }else if(turn_angle == 270){
-            //Else a sequence results in a 270 degree turn angle, push back a "L" to skip the sequence
-            std::cout << "Short cut can be made\n";
-            shortest_path.push_back('R');
-
-            //Increment the iterator to skip to the next turn after the detected loop
-            curr_turn += 2;
-        }else if(turn_angle == 90){
-            //Else a sequence results in a 90 degree turn angle, push back a "L" to skip the sequence
-            //This usually happens if you're using a right hand rule during the first search
-            std::cout << "Short cut can be made\n";
-            shortest_path.push_back('L');
-
-            //Increment the iterator to skip to the next turn after the detected loop
-            curr_turn += 2;
-        }else{
-            shortest_path.push_back(turns_taken[curr_turn]);
+        //Use the resulting turn angle to recognized patters
+        //If a pattern is recognized then skip ahead 2 elements in the vector
+        switch(turn_angle){
+            case 360:
+                std::cout << "L U L encountered\n";
+                shortest_path.push_back('S');
+                curr_turn += 2;
+                break;
+            case 0:
+                std::cout << " R U R encountered\n";
+                shortest_path.push_back('S');
+                curr_turn += 2;
+                break;
+            case 270:
+                std::cout << " S U R encountered\n";
+                shortest_path.push_back('R');
+                curr_turn +=2;
+                break;
+            case 90:
+                std::cout << "S U L encountered\n";
+                shortest_path.push_back('L');
+                curr_turn +=2;
+                break;
+            default:
+                //If no pattern is  record the current turn as necessary
+                shortest_path.push_back(turns_taken[curr_turn]);
+                break;
         }
 
         //If the next turn is the end then finish the loop
